@@ -5,7 +5,7 @@ existeNumeroIgualASumaDelResto lista =
 
 main :: IO ()
 main = do
-    let vector = [3, 1, 2, 6]
+    let vector = [3, 1, 2, 6] -- 6= 3+2+1
     if existeNumeroIgualASumaDelResto vector
-        then putStrLn "Sí existe un número igual a la suma del resto."
+        then putStrLn "Sí existe un número igual a la suma del resto." 
         else putStrLn "No existe tal número."
