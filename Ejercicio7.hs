@@ -1,26 +1,24 @@
--- Función que pide n números y los guarda en una lista
-pedirNumeros :: Int -> IO [Int]
+-- Función que pide n números reales y los guarda en una lista
+pedirNumeros :: Int -> IO [Double]
 pedirNumeros 0 = return []
 pedirNumeros n = do
-    putStrLn $ "Ingresa un número (" ++ show n ++ " restantes):"
+    putStrLn $ "Ingresa un número real (" ++ show n ++ " restantes):"
     input <- getLine
-    let numero = read input :: Int
+    let numero = read input :: Double
     resto <- pedirNumeros (n - 1)
     return (numero : resto)
 
 main :: IO ()
 main = do
-    putStrLn "Vas a ingresar 10 números:"
+    putStrLn "Vas a ingresar 10 números reales:"
     numeros <- pedirNumeros 10
     putStrLn "Los números ingresados son:"
     print numeros
 
     let suma = sum numeros
-        promedio :: Double
-        promedio = fromIntegral suma / fromIntegral (length numeros)
-
-        mayores = length (filter (> promedio) (map fromIntegral numeros))
-        menores = length (filter (<= promedio) (map fromIntegral numeros))
+        promedio = suma / fromIntegral (length numeros)
+        mayores = length (filter (> promedio) numeros)
+        menores = length (filter (<= promedio) numeros)
 
     putStrLn $ "Promedio: " ++ show promedio
     putStrLn $ "Cantidad de números mayores al promedio: " ++ show mayores
